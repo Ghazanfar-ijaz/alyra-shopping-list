@@ -1,28 +1,29 @@
 const AddProductForm = (props) => {
-  const { shopping, addShoppingList } = props
+  const { shopping, addToShoppingList } = props
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
-    console.log(event.elements.product.value)
-    const newProduct = event.target.elements.product.value
-    if (!Shopping.includes(newProduct)) {
+    let newProduct = event.target.elements.product.value
+    if (!shopping.includes(newProduct)) {
       addToShoppingList(newProduct)
+    } else {
+      alert('Produit déjà sur la liste')
     }
-    return (
-      <form className="mb-5" onSubmit={handleFormSubmit}>
-        <div className="input-group mb-2">
-          <input
-            id="product"
-            className="form-control"
-            aria-label="Ajouter sur la liste"
-            required
-          />
-          <button type="submit" className="btn btn-success btn-lg">
-            J'ajoute !
-        </button>
-        </div>
-      </form>
-    )
+    event.target.reset()
   }
 
-  export default AddProductForm
+  return <form className="mb-5" onSubmit={handleFormSubmit} >
+    <div className="input-group mb-2">
+      <input
+        id="product"
+        className="form-control"
+        aria-label="Ajouter sur la liste"
+        required
+      /><button type="submit" className="btn btn-success btn-lg">
+        J'ajoute !
+  </button>
+    </div>
+  </form>
+}
+
+export default AddProductForm
