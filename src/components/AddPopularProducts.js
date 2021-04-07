@@ -16,6 +16,8 @@ const AddPopularProducts = (props) => {
           <button
             key={el.text}
             className="btn btn-outline-success me-2 mb-2 d-flex align-items-center"
+            disabled={shopping.includes(el.text)}
+            onClick={() => addToShoppingList(el.text)}
           >
             {el.text}{" "}
             <span className="fs-1" role="img" aria-hidden>
